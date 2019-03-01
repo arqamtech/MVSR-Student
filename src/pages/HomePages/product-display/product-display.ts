@@ -14,7 +14,7 @@ import { SellerProfilePage } from '../seller-profile/seller-profile';
 })
 export class ProductDisplayPage {
 
-  prod = this.navParams.get("prod");
+  prod = this.navParams.get("item");
   inC: boolean = false;
 
   cartVal: number = 0;

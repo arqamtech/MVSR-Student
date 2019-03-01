@@ -1,26 +1,24 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Posters</ion-title>
+    <ion-title>Canteen</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  <div class="wrapper">
-    <ion-slides *ngIf="banners && banners.length" autoplay="3000" loop="true" speed="500" pager="true">
-      <ion-slide *ngFor="let b of banners">
-        <img [src]="b.Image" class="bannerImg" />
-      </ion-slide>
-    </ion-slides>
-  </div>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col class="catCol" (click)="showProducts(c)" text-center *ngFor="let c of cats" col-4>
-        {{c.Name}}
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
+  <ion-card *ngFor="let i of menuItems">
+    <ion-card-content>
+      <ion-card-title>{{i.Name}}</ion-card-title>
+      <ion-item>
+        <p ion-text item-start color='primary'>Price</p>
+        <p item-end>Rs. {{i.Price}}</p>
+      </ion-item>
+      <ion-item>
+        <p ion-text item-start color='primary'>Category</p>
+        <p item-end>{{i.CategoryName}}</p>
+      </ion-item>
+      <button ion-button round small float-right (click)="view(i)">View</button>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

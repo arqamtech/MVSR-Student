@@ -1,12 +1,13 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>Cart</ion-title>
-    <ion-buttons end>
-      <button ion-button clear>
-        {{cartVal}}
-      </button>
-    </ion-buttons>
   </ion-navbar>
+  <ion-buttons end>
+    <ion-item no-lines>
+      <p ion-text item-start color="primary">Cart Value</p>
+      <p item-end>{{cartVal}}</p>
+    </ion-item>
+  </ion-buttons>
 </ion-header>
 
 
@@ -18,9 +19,6 @@
 
       </ion-card-title>
       <ion-item no-lines>
-        <ion-avatar item-start>
-          <img [src]="i.ImageUrl" class="" />
-        </ion-avatar>
         <div item-end>
           <ion-icon name="ios-remove-circle-outline" margin-right (click)="rmQuan(i)"></ion-icon>
           {{i.Quantity}}
@@ -30,7 +28,7 @@
       <button ion-button float-right round (click)="placeOrder(i)">Place Order</button>
     </ion-item>
   </div>
-  <ion-card *ngIf="!items.length" >
+  <ion-card *ngIf="!items.length">
     <ion-card-content>
       <img src="assets/imgs/empty-cart.png" class="emptyCart" />
     </ion-card-content>

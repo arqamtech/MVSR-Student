@@ -29,12 +29,12 @@ import { SellerProfilePage } from '../pages/HomePages/seller-profile/seller-prof
 
 
 export const firebaseCred = {
-  apiKey: "AIzaSyDfYGCZchTJHmNBlk4-T4-B24d7qtBs4LQ",
-  authDomain: "posters-83a2e.firebaseapp.com",
-  databaseURL: "https://posters-83a2e.firebaseio.com",
-  projectId: "posters-83a2e",
-  storageBucket: "posters-83a2e.appspot.com",
-  messagingSenderId: "9709869347"
+  apiKey: "AIzaSyDFyu6CMwvb7ScajfV4ourVVcQWnZCz7iQ",
+  authDomain: "mvsr-food.firebaseapp.com",
+  databaseURL: "https://mvsr-food.firebaseio.com",
+  projectId: "mvsr-food",
+  storageBucket: "mvsr-food.appspot.com",
+  messagingSenderId: "703840969214"
 };
 firebase.initializeApp(firebaseCred);
 

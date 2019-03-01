@@ -5,21 +5,25 @@
 
 
 <ion-content padding>
-  <div class="image" text-center>
-    <img [src]="prod.ImageUrl" ion-text class="image" />
-  </div>
 
 
   <ion-card-title> {{prod.Name}}</ion-card-title>
-  <p ion-text>Rs. {{prod.Price}}</p>
-  
-  
-  <ion-item no-lines (click)="gtSellerPage()" >
-    <p  item-start >Seller</p>
-    <p ion-text item-end color="primary" >{{prod.StoreName}}</p>
+
+
+  <ion-item no-lines>
+    <p ion-text item-start color="primary">Price</p>
+    <p item-end>{{prod.Price}}</p>
   </ion-item>
 
+  <ion-item no-lines>
+    <p ion-text item-start color="primary">Category</p>
+    <p item-end>{{prod.CategoryName}}</p>
+  </ion-item>
 
+  <ion-item no-lines>
+    <p ion-text item-start color="primary">Description</p>
+    <p item-end>{{prod.Description}}</p>
+  </ion-item>
 
 
 
