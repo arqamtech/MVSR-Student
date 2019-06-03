@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import firebase from 'firebase';
 import { TabsPage } from '../../Supp/tabs/tabs';
+import moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -9,32 +10,34 @@ import { TabsPage } from '../../Supp/tabs/tabs';
   templateUrl: 'sign-up.html',
 })
 export class SignUpPage {
-  name : string;
-  email : string;
-  
+  name: string;
+  email: string;
+
 
   constructor(
-  public navCtrl: NavController,
-  public toastCtrl : ToastController,
+    public navCtrl: NavController,
+    public toastCtrl: ToastController,
   ) {
   }
-  
-  checkData(){
-    if(this.name){
-      if(this.email){
-        this.dataEnter();
-      }else{
-        this.presentToast("Enter email Id");
-      }
-    }else{
+
+  checkData() {
+    if (this.name) {
+      // if(this.email){
+      this.dataEnter();
+      // }else{
+      //   this.presentToast("Enter email Id");
+      // }
+    } else {
       this.presentToast("Enter your Name");
     }
   }
-  dataEnter(){
+  dataEnter() {
     firebase.database().ref("User Data/Users").child(firebase.auth().currentUser.uid).set({
-      Name : this.name,
-      Email : this.email
-    }).then(()=>{
+      Name: this.name,
+      Email: this.email,
+      Phone: firebase.auth().currentUser.phoneNumber,
+      TimeStamp: moment().format()
+    }).then(() => {
       this.navCtrl.setRoot(TabsPage);
     })
 
@@ -45,7 +48,7 @@ export class SignUpPage {
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
-      position : "top",
+      position: "top",
       duration: 4000,
       showCloseButton: false,
     });

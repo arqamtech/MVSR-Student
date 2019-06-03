@@ -4,6 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { PaymentGatewayPage } from '../../PaymentPages/payment-gateway/payment-gateway';
 import { PaymentConfirmPage } from '../../PaymentPages/payment-confirm/payment-confirm';
+import { LoginSplashPage } from '../../Auths/login-splash/login-splash';
 
 @IonicPage()
 @Component({
@@ -30,6 +31,11 @@ export class CartPage {
     public db: AngularFireDatabase,
     public navParams: NavParams
   ) {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        this.navCtrl.setRoot(LoginSplashPage);
+      }
+    })
     this.getCart();
     this.getCartValue();
   }
@@ -49,7 +55,7 @@ export class CartPage {
       this.items = [];
       snap.forEach(snip => {
         let temp: any;
-        this.db.object(`Items/${snip.key}`).snapshotChanges().subscribe(isnap => {
+        this.db.object(`MenuItems/${snip.key}`).snapshotChanges().subscribe(isnap => {
           temp = isnap.payload.val();
           temp.key = isnap.key;
           temp.Quantity = snip.payload.val();

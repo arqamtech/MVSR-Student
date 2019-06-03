@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { YourOrdersPage } from '../../ProfilePages/your-orders/your-orders';
 import { ContactUsPage } from '../../ProfilePages/contact-us/contact-us';
 import { FaqSPage } from '../../ProfilePages/faq-s/faq-s';
+import { LoginSplashPage } from '../../Auths/login-splash/login-splash';
 
 @IonicPage()
 @Component({
@@ -13,7 +14,7 @@ import { FaqSPage } from '../../ProfilePages/faq-s/faq-s';
 export class ProfilePage {
 
   name: string;
-
+  phone: string;
   loading = this.loadingCtrl.create({
     spinner: 'crescent',
     showBackdrop: false,
@@ -26,10 +27,17 @@ export class ProfilePage {
     public alertCtrl: AlertController,
     public navParams: NavParams
   ) {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        this.navCtrl.setRoot(LoginSplashPage);
+      }
+    })
+    this.getUser();
   }
 
   getUser() {
     firebase.database().ref("User Data/Users").child(firebase.auth().currentUser.uid).once("value", snap => {
+      this.phone = snap.val().Phone;
       this.name = snap.val().Name;
     })
   }

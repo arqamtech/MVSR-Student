@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { CategoryWiseProductsPage } from '../../HomePages/category-wise-products/category-wise-products';
-import moment from 'moment';
 import { ProductDisplayPage } from '../../HomePages/product-display/product-display';
+import { LoginSplashPage } from '../../Auths/login-splash/login-splash';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'page-home',
@@ -18,21 +18,24 @@ export class HomePage {
     public db: AngularFireDatabase,
     public navParams: NavParams,
   ) {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        this.navCtrl.setRoot(LoginSplashPage);
+      }
+    })
     this.getMenu();
   }
 
   getMenu() {
-    this.db.list(`Menus/${moment().format("DDMMYY")}/Items`).snapshotChanges().subscribe(snap => {
+    this.db.list(`MenuItems`).snapshotChanges().subscribe(snap => {
       this.menuItems = [];
-      snap.forEach(snp => {
+      snap.forEach(iisp => {
 
-        this.db.object(`Items/${snp.payload.val()}/`).snapshotChanges().subscribe(iisp => {
 
-          let temp: any = iisp.payload.val();
-          temp.key = iisp.key;
-          this.menuItems.push(temp)
+        let temp: any = iisp.payload.val();
+        temp.key = iisp.key;
+        this.menuItems.push(temp)
 
-        })
       })
     })
   }
