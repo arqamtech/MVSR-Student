@@ -28,7 +28,7 @@
     "angularfire2": "^5.1.0",
     "com.razorpay.cordova": "^1.4.3",
     "cordova-android": "7.1.1",
-    "cordova-browser": "5.0.4",
+    "cordova-browser": "6.0.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-googlemaps": "^2.5.1",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
